@@ -6,17 +6,32 @@ publish_to: none
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
+repository_url: &repository_url https://github.com/mIwr/mobile_service
+repository_ref: &repository_ref master
+push_service_path: &push_service_path mobile_service_interface/push_service_interface
+push_service_gms_path: &push_service_gms_path mobile_service_component/push_service/push_service_gms
+push_service_hms_path: &push_service_hms_path mobile_service_component/push_service/push_service_hms
+
 dependencies:
   flutter:
     sdk: flutter
 
-  push_service_interface:
-    path: ../../mobile_service_interface/push_service_interface
-  push_service_gms:
-    path: ../../mobile_service_component/push_service/push_service_gms
-  push_service_hms:
-    path: ../../mobile_service_component/push_service/push_service_hms
   flutter_hms_gms_availability: ^3.7.0
+  push_service_interface:
+    git:
+      url: *repository_url
+      ref: *repository_ref
+      path: *push_service_path
+  push_service_gms:
+    git:
+      url: *repository_url
+      ref: *repository_ref
+      path: *push_service_gms_path
+  push_service_hms:
+    git:
+      url: *repository_url
+      ref: *repository_ref
+      path: *push_service_hms_path
 
 dev_dependencies:
   flutter_test:

@@ -6,17 +6,24 @@ publish_to: none
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
+repository_url: &repository_url https://github.com/mIwr/mobile_service
+repository_ref: &repository_ref master
+push_service_path: &push_service_path mobile_service_interface/push_service_interface
+
 dependencies:
   flutter:
     sdk: flutter
 
-  push_service_interface:
-    path: ../../../mobile_service_interface/push_service_interface
   huawei_push: #6.12.0+301 # No Android SDK 34 support
     git:
       url: 'https://github.com/yashadpf/hms-flutter-plugin'
       ref: '78da3906c32c3b99e0a3fa4af3fb5f003f9e573f'
       path: 'flutter-hms-push/'
+  push_service_interface:
+    git:
+      url: *repository_url
+      ref: *repository_ref
+      path: *push_service_path
 
 dev_dependencies:
   flutter_test:

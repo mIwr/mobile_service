@@ -6,12 +6,19 @@ publish_to: none
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
+repository_url: &repository_url https://github.com/mIwr/mobile_service
+repository_ref: &repository_ref master
+base_service_path: &base_service_path mobile_service_interface/base_service_interface
+
 dependencies:
   flutter:
     sdk: flutter
 
   base_service_interface:
-    path: ../../base_service_interface
+    git:
+      url: *repository_url
+      ref: *repository_ref
+      path: *base_service_path
 
 dev_dependencies:
   flutter_test:

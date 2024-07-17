@@ -6,9 +6,16 @@ publish_to: none
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
+repository_url: &repository_url https://github.com/mIwr/mobile_service
+repository_ref: &repository_ref master
+errlog_service_path: &errlog_service_path mobile_service_component/errlog_service/errlog_service_hms
+
 dependencies:
   flutter:
     sdk: flutter
 
   errlog_service_hms:
-    path: ../../mobile_service_component/errlog_service/errlog_service_hms
+    git:
+      url: *repository_url
+      ref: *repository_ref
+      path: *errlog_service_path

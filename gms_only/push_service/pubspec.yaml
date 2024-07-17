@@ -6,9 +6,16 @@ publish_to: none
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
+repository_url: &repository_url https://github.com/mIwr/mobile_service
+repository_ref: &repository_ref master
+push_service_path: &push_service_path mobile_service_component/push_service/push_service_gms
+
 dependencies:
   flutter:
     sdk: flutter
 
   push_service_gms:
-    path: ../../mobile_service_component/push_service/push_service_gms
+    git:
+      url: *repository_url
+      ref: *repository_ref
+      path: *push_service_path
