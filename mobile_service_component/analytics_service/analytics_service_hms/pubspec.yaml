@@ -1,0 +1,24 @@
+name: analytics_service_hms
+description: Internal HMS analytics service
+version: 0.1.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  analytics_service_interface:
+    path: ../../../mobile_service_interface/analytics_service_interface
+  huawei_analytics: # 6.12.0+301 # No Android SDK 34 support
+    git: # Android SDK 34 support fix
+      url: 'https://github.com/julio-lezcano-itti/hms-flutter-plugin'
+      ref: '9ddd3b8433689f454072606108717d9eda07b1f7'
+      path: 'flutter-hms-analytics/'
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any

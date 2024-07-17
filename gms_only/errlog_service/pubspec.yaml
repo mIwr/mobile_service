@@ -1,0 +1,14 @@
+name: errlog_service
+description: "GMS-only error log service (Firebase Crashlytics)"
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  errlog_service_gms:
+    path: ../../mobile_service_component/errlog_service/errlog_service_gms

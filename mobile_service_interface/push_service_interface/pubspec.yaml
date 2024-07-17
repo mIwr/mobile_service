@@ -1,0 +1,20 @@
+name: push_service_interface
+description: Remote push service interface
+version: 0.1.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  base_service_interface:
+    path: ../base_service_interface
+  shared_preferences: ^2.2.3 # Android background and 'killed' push messages callback handler support
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any

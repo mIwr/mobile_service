@@ -1,0 +1,65 @@
+name: example
+description: "Mobile services use case example"
+
+publish_to: 'none'
+
+version: 1.0.1+4
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+# https://yaml.org/refcard.html
+analytics_service_path: &analytics_service_path ../gms_only/analytics_service # YAML anchor
+errlog_service_path: &errlog_service_path ../gms_only/errlog_service # YAML anchor
+push_service_path: &push_service_path ../gms_only/push_service # YAML anchor
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Native payload plugins
+  device_info_plus: 10.1.0 # Feedback info carver
+  install_referrer: # 1.2.1 # App installation source detector
+    git: # Android namespace error fix
+      url: 'https://github.com/undreeyyy/flutter_plugin_install_referrer'
+      ref: 'fd87e9b8f0d5ed909e929388244456f72b9b63c7'
+  package_info_plus: 6.0.0 # App package info
+
+  #Native UI plugins
+  flutter_statusbarcolor_ns: #0.5.0 # Native status bar controller (iOS Background color support)
+    git: # Android gradle namespace error fix (+ manual version_17 insert & kotlin version)
+      url: 'https://github.com/Schefferbird/flutter_statusbarcolor'
+      ref: 'ac7143a59a098d350bbd364880e619248be953f8'
+
+  #UI modules
+  flutter_svg: 2.0.10+1 # SVG render engine
+
+  analytics_service:
+    path: *analytics_service_path
+  errlog_service:
+    path: *errlog_service_path
+  push_service:
+    path: *push_service_path
+
+  intl: 0.18.1 # Localization plugin
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+  # Setup: pub global activate flutter_asset_generator
+  flutter_asset_generator: 1.2.0 # Assets map generator (fgen --no-watch --no-preview -n R -o lib/generated/assets.dart)
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+
+flutter_intl:
+  enabled: true

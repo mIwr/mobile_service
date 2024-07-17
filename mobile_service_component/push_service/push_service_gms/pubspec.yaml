@@ -1,0 +1,21 @@
+name: push_service_gms
+description: Internal GMS push service (Firebase Cloud Messaging - FCM)
+version: 0.1.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  push_service_interface:
+    path: ../../../mobile_service_interface/push_service_interface
+  firebase_core: ^3.2.0
+  firebase_messaging: ^15.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any

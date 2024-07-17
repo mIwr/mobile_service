@@ -1,0 +1,14 @@
+name: push_service
+description: "GMS-only push service (Firebase Cloud Messaging - FCM)"
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  push_service_gms:
+    path: ../../mobile_service_component/push_service/push_service_gms

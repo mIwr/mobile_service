@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "247136751721",
+    "project_id": "messageservice-65bf7",
+    "storage_bucket": "messageservice-65bf7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247136751721:android:b87ccb16701fe9ef0812f8",
+        "android_client_info": {
+          "package_name": "org.zeit.message.service.example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2biAF79A_ADmyaHmuD3PgPJjI4-K-d3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

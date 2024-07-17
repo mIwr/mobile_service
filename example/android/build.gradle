@@ -1,0 +1,27 @@
+def flavorName = getGradle().getStartParameter().getTaskRequests().toString().toLowerCase();
+if (flavorName.contains("hms")) {
+    //https://developer.huawei.com/consumer/en/doc/HMSCore-Guides/android-integrating-sdk-0000001050161876#EN-US_TOPIC_0000001055224466__en-us_topic_0000001050041594_li1345452582116
+    buildscript {
+        dependencies {
+            classpath 'com.android.tools.build:gradle:8.4.0'
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

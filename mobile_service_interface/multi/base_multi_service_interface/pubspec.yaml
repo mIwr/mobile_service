@@ -1,0 +1,19 @@
+name: base_multi_service_interface
+description: Base mobile multi-service interface
+version: 0.1.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  base_service_interface:
+    path: ../../base_service_interface
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any

@@ -1,0 +1,21 @@
+name: analytics_service_gms
+description: Internal GMS analytics service (Firebase)
+version: 0.1.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  analytics_service_interface:
+    path: ../../../mobile_service_interface/analytics_service_interface
+  firebase_core: ^3.2.0
+  firebase_analytics: ^11.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any

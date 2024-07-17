@@ -1,0 +1,1 @@
+export 'package:analytics_service_gms/analytics_service.dart';

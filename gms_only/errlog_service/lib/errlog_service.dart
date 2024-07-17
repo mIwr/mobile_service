@@ -1,0 +1,1 @@
+export 'package:errlog_service_gms/errlog_service.dart';

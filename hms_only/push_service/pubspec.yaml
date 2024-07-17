@@ -1,0 +1,14 @@
+name: push_service
+description: "HMS-only push service"
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  push_service_hms:
+    path: ../../mobile_service_component/push_service/push_service_hms

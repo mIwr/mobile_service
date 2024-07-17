@@ -1,0 +1,24 @@
+name: push_service
+description: Combined (GMS [priority and default] + HMS [reserve, if GMS isn't available]) push service
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  push_service_interface:
+    path: ../../mobile_service_interface/push_service_interface
+  push_service_gms:
+    path: ../../mobile_service_component/push_service/push_service_gms
+  push_service_hms:
+    path: ../../mobile_service_component/push_service/push_service_hms
+  flutter_hms_gms_availability: ^3.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any

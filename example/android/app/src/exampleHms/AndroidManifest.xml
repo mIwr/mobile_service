@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA"/>
+
+    <application>
+        <meta-data android:name="com.huawei.hms.client.appid" android:value="appid=TODO" />
+        <meta-data android:name="install_channel" android:value="AppGallery" />
+        <meta-data android:name="push_kit_auto_init_enabled" android:value="true" />
+
+        <receiver
+            android:name="com.huawei.hms.flutter.push.receiver.BackgroundMessageBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.hms.flutter.push.receiver.BACKGROUND_REMOTE_MESSAGE"/>
+            </intent-filter>
+        </receiver>
+    </application>
+    <queries>
+        <intent>
+            <action android:name="com.huawei.hms.core.aidlservice" />
+        </intent>
+    </queries>
+</manifest>
