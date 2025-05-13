@@ -4,7 +4,6 @@ import 'dart:collection';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-import 'package:push_service_interface/model/ps_remote_message.dart';
 import 'package:push_service_interface/push_service_interface.dart';
 
 void _onPushOpenedApp(RemoteMessage message) {
@@ -69,9 +68,15 @@ class PushServiceImpl implements PushServiceInterface {
   String get agentKey => ServiceAgentExt.kGmsAgentKey;
   @override
   ServiceAgent? get agent => ServiceAgent.gms;
+  @override
+  bool get canUse => UniversalPlatform.isAndroid || UniversalPlatform.isIOS || UniversalPlatform.isMacOS || UniversalPlatform.isWeb;
 
   @override
   Future<void> init() async {
+    if (!canUse) {
+      print("Unsupported platform for Firebase Cloud Messaging - " + UniversalPlatform.operatingSystem);
+      return;
+    }
     await Firebase.initializeApp();
     await _pushInit();
   }
@@ -112,27 +117,42 @@ class PushServiceImpl implements PushServiceInterface {
   }
 
   @override
-  Future<String?> getToken() {
-    return FirebaseMessaging.instance.getToken();
+  Future<String?> getToken() async {
+    if (!canUse) {
+      return null;
+    }
+    return await FirebaseMessaging.instance.getToken();
   }
 
   @override
-  Future<void> deleteToken() {
-    return FirebaseMessaging.instance.deleteToken();
+  Future<void> deleteToken() async {
+    if (!canUse) {
+      return;
+    }
+    await FirebaseMessaging.instance.deleteToken();
   }
 
   @override
-  Future<void> setForegroundNotificationPresentationOptions({bool alert = false, bool badge = false, bool sound = false}) {
-    return FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: alert, badge: badge, sound: sound);
+  Future<void> setForegroundNotificationPresentationOptions({bool alert = false, bool badge = false, bool sound = false}) async {
+    if (!canUse) {
+      return;
+    }
+    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: alert, badge: badge, sound: sound);
   }
 
   @override
   Future<void> subscribeToTopic(String topic) async {
+    if (!canUse) {
+      return;
+    }
     await FirebaseMessaging.instance.subscribeToTopic(topic);
   }
 
   @override
   Future<void> unsubscribeFromTopic(String topic) async {
+    if (!canUse) {
+      return;
+    }
     await FirebaseMessaging.instance.unsubscribeFromTopic(topic);
   }
 
@@ -145,6 +165,9 @@ class PushServiceImpl implements PushServiceInterface {
 
   @override
   Future<PSRemoteMessage?> getInitialMessage() async {
+    if (!canUse) {
+      return null;
+    }
     final fcmMsg = await FirebaseMessaging.instance.getInitialMessage();
     if (fcmMsg == null) {
       return null;

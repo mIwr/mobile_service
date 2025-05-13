@@ -33,6 +33,16 @@ class ErrlogServiceImpl implements ErrlogServiceInterface {
     }
     return ServiceAgentExt.kGmsAgentKey;
   }
+  @override
+  bool get canUse {
+    if (_gmsAvailable) {
+      return google.ErrlogService.instance.canUse;
+    }
+    if (_hmsAvailable) {
+      return huawei.ErrlogService.instance.canUse;
+    }
+    return false;
+  }
 
   @override
   Future<void> init() async {

@@ -11,10 +11,8 @@ import 'package:errlog_service/errlog_service.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:install_referrer/install_referrer.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import 'util/app_install_info_util.dart';
 import 'ui/screens_enum.dart';
 import 'ui/tab_bar_scaffold.dart';
 
@@ -31,9 +29,6 @@ abstract class LaunchHelper {
         HttpOverrides.global = AppHttpOverrides();
       }
     }
-
-    final appInstallInfo = await InstallReferrer.app;
-    appInstallSource = AppInstallInfoUtil.getAppInstallSourceString(appInstallInfo);
 
     await _initMobileServices();
 

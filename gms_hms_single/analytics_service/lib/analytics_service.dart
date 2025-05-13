@@ -1,5 +1,4 @@
 
-
 import 'src/analytics_service_impl.dart';
 import 'package:analytics_service_interface/analytics_service_interface.dart';
 

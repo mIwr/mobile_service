@@ -50,8 +50,7 @@ android {
     if (project.android.hasProperty("namespace")) {
         namespace "org.zeit.message.service.example"
     }
-    compileSdk 35
-    ndkVersion flutter.ndkVersion
+    compileSdk 36
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -75,8 +74,8 @@ android {
 
     defaultConfig {
         applicationId "org.zeit.message.service.example"
-        minSdkVersion 21
-        targetSdkVersion 35
+        minSdkVersion 23
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
@@ -125,11 +124,11 @@ android {
     }
 
     dependencies {
-        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.2'
         if (flavorName.contains("hms")) {
-            /*implementation 'com.huawei.agconnect:agconnect-core:1.9.1.302'
+            /*implementation 'com.huawei.agconnect:agconnect-core:1.9.1.304'
             implementation 'com.huawei.hms:hianalytics:6.8.0.300'
-            implementation 'com.huawei.agconnect:agconnect-crash:1.7.3.302'
+            implementation 'com.huawei.agconnect:agconnect-crash:1.7.3.304'
             implementation "com.huawei.hms:push:6.10.0.300"*/
         }
         if (flavorName.contains("gms")) {

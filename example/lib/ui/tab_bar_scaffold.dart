@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:analytics_service/analytics_service.dart';
 import 'package:example/extension/navigator_ext.dart';
 import 'package:example/global_variables.dart';
@@ -61,22 +63,23 @@ class _TabBarScaffoldState extends State<TabBarScaffold> {
   }
 
   CupertinoTabView _buildTab(BuildContext context, {required GlobalKey<NavigatorState> navKey, required String routeName, required StatefulWidget payload}) {
-    AdvancedAnalyticsObserver? analyticsObs;
+    final List<NavigatorObserver> navObservers = [];
+    if (Platform.isAndroid || Platform.isIOS) {
+      navObservers.addAll([
+        StatusBarObserver(),
+        SystemNavBarObserver()
+      ]);
+    }
     try {
       final service = AnalyticsService.instance;
-      analyticsObs = AdvancedAnalyticsObserver(analyticsService: service);
+      navObservers.add(AdvancedAnalyticsObserver(analyticsService: service));
     } catch (error) {
       print("Init analytics observer error $error");
     }
 
     return CupertinoTabView(navigatorKey: navKey, routes: {
       routeName: (context) => payload
-    },  navigatorObservers: [
-      StatusBarObserver(),
-      SystemNavBarObserver(),
-      if (analyticsObs != null)
-        analyticsObs
-    ], onUnknownRoute: (route) {
+    },  navigatorObservers: navObservers, onUnknownRoute: (route) {
       //custom route name on tab hack
       return MaterialPageRoute(settings: RouteSettings(name: routeName), builder: (context) => payload);
     },);
@@ -90,6 +93,9 @@ class _TabBarScaffoldState extends State<TabBarScaffold> {
         final navKey = _navigationKeys[newIndex];
         if (newIndex == _selectedTabIndex && navKey.currentState?.canPop() == true) {
           navKey.currentState?.popUntilCan();
+          return;
+        }
+        if (!Platform.isAndroid && !Platform.isIOS) {
           return;
         }
         _statusBarTabsColors[_selectedTabIndex] = StatusBarUtil.bgColor;

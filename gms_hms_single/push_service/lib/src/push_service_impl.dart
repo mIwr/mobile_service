@@ -1,9 +1,8 @@
 
-import 'package:push_service/push_service.dart';
 import 'package:push_service_gms/push_service.dart' as google;
 import 'package:push_service_hms/push_service.dart' as huawei;
+import 'package:push_service_interface/push_service_interface.dart';
 import 'package:flutter_hms_gms_availability/flutter_hms_gms_availability.dart';
-import 'package:push_service_interface/model/ps_remote_message.dart';
 
 class PushServiceImpl implements PushServiceInterface {
 
@@ -32,6 +31,17 @@ class PushServiceImpl implements PushServiceInterface {
       return ServiceAgentExt.kHmsAgentKey;
     }
     return ServiceAgentExt.kGmsAgentKey;
+  }
+
+  @override
+  bool get canUse {
+    if (_gmsAvailable) {
+      return google.PushService.instance.canUse;
+    }
+    if (_hmsAvailable) {
+      return huawei.PushService.instance.canUse;
+    }
+    return false;
   }
 
   @override

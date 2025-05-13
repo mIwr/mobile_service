@@ -1,10 +1,10 @@
 name: errlog_service_hms
 description: Internal HMS error log service
-version: 0.1.1
+version: 0.1.2
 publish_to: none
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ^3.3.4
 
 dependencies:
   flutter:
@@ -12,6 +12,7 @@ dependencies:
 
   errlog_service_interface:
     path: ../../../mobile_service_interface/errlog_service_interface
+  universal_platform: ^1.1.0
   agconnect_crash: # 1.9.0+300 # No Android SDK 34 support
     git: # Android SDK 34 support fix
       url: 'https://github.com/julio-lezcano-itti/agc-flutter-plugin'

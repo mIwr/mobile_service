@@ -4,7 +4,7 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ^3.3.4
 
 dependencies:
   flutter:
@@ -16,7 +16,7 @@ dependencies:
     path: ../../mobile_service_component/errlog_service/errlog_service_gms
   errlog_service_hms:
     path: ../../mobile_service_component/errlog_service/errlog_service_hms
-  flutter_hms_gms_availability: ^3.7.0
+  flutter_hms_gms_availability: ^3.10.0
 
 dev_dependencies:
   flutter_test:

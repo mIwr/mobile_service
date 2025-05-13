@@ -8,6 +8,8 @@ class ErrlogServiceImpl implements ErrlogServiceInterface {
   String get agentKey => ServiceAgentExt.kSentryAgentKey;
   @override
   ServiceAgent? get agent => ServiceAgent.sentry;
+  @override
+  bool get canUse => true;
 
   var _dsn = "";
 

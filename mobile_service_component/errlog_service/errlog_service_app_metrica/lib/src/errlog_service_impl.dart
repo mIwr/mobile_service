@@ -1,6 +1,7 @@
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:errlog_service_interface/errlog_service_interface.dart';
 import 'package:flutter/foundation.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class ErrlogServiceImpl implements ErrlogServiceInterface {
 
@@ -8,6 +9,8 @@ class ErrlogServiceImpl implements ErrlogServiceInterface {
   String get agentKey => ServiceAgentExt.kYandexAppMetricaAgentKey;
   @override
   ServiceAgent? get agent => ServiceAgent.yandexAppMetrica;
+  @override
+  bool get canUse => UniversalPlatform.isAndroid || UniversalPlatform.isIOS;
 
   @override
   Future<void> init() async {
@@ -15,30 +18,46 @@ class ErrlogServiceImpl implements ErrlogServiceInterface {
   }
 
   @override
-  Future<void> initWithConfig(ServiceConfig config) {
-    return AppMetrica.activateReporter(ReporterConfig(config.apiKey, logs: kDebugMode));
+  Future<void> initWithConfig(ServiceConfig config) async {
+    if (!canUse) {
+      print("Unsupported platform for AppMetrica error logging - " + UniversalPlatform.operatingSystem);
+      return;
+    }
+    await AppMetrica.activateReporter(AppMetricaReporterConfig(config.apiKey, logs: kDebugMode));
   }
 
   @override
-  Future<void> setLoggingEnabled(bool enabled) {
+  Future<void> setLoggingEnabled(bool enabled) async {
+    if (!canUse) {
+      return;
+    }
     //Sync with analytics enabled options
-    return AppMetrica.setDataSendingEnabled(enabled);
+    await AppMetrica.setDataSendingEnabled(enabled);
   }
 
   @override
-  Future<void> log(String message) {
-    return AppMetrica.reportEvent(message);
+  Future<void> log(String message) async {
+    if (!canUse) {
+      return;
+    }
+    await AppMetrica.reportEvent(message);
   }
 
   @override
-  Future<void> recordFlutterError(FlutterErrorDetails flutterErrorDetails, {bool fatal = false}) {
+  Future<void> recordFlutterError(FlutterErrorDetails flutterErrorDetails, {bool fatal = false}) async {
+    if (!canUse) {
+      return;
+    }
     final msg = flutterErrorDetails.context?.name ?? "Unknown error name";
     final stackTrace = flutterErrorDetails.stack;
-    return AppMetrica.reportError(message: msg, errorDescription: stackTrace == null ? null : AppMetricaErrorDescription(stackTrace));
+    await AppMetrica.reportError(message: msg, errorDescription: stackTrace == null ? null : AppMetricaErrorDescription(stackTrace));
   }
 
   @override
-  Future<void> recordError(exception, StackTrace? stack, {reason, Iterable<Object> information = const [], bool? printDetails, bool fatal = false}) {
+  Future<void> recordError(exception, StackTrace? stack, {reason, Iterable<Object> information = const [], bool? printDetails, bool fatal = false}) async {
+    if (!canUse) {
+      return;
+    }
     final msg = exception?.toString() ?? "Unknown error name";
     final String info = information.isEmpty
         ? ''
@@ -47,6 +66,6 @@ class ErrlogServiceImpl implements ErrlogServiceInterface {
     if (stack != null) {
       desc = AppMetricaErrorDescription(stack, message: info);
     }
-    return AppMetrica.reportError(message: msg, errorDescription: desc);
+    await AppMetrica.reportError(message: msg, errorDescription: desc);
   }
 }

@@ -1,5 +1,5 @@
 
-import 'package:push_service_interface/model/ps_remote_message.dart';
+import 'model/ps_remote_message.dart';
 
 ///Push messaging service functions mixin
 mixin PushServiceCmdMixin {

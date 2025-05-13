@@ -5,10 +5,10 @@ Useful for supporting several different services with single app-level implement
 
 ## General
 
-- Android 5.1+ (SDK 21+), supports SDK 34+
+- Android 7.0+ (SDK 24+), supports SDK 34+
 - iOS 12.0+
-- Dart SDK >=3.0.0
-- Flutter SDK >=3.10.0
+- Dart SDK >=3.3.4
+- Flutter SDK >=3.19.6
 
 Supported service types:
 
@@ -37,8 +37,8 @@ Supported service combinations:
 
 | Structure element            | Description                                                                                                                                             |
 |------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Mobile service interfaces    | Located at **[mobile_service_interface](./mobile_service_interface)**. Contains encapsulation interfaces for analytics, error logging and push          |
-| Mobile service components    | Located at **[mobile_service_component](./mobile_service_component)**. Contains internal encapsulation implementations for public service combinations |
+| Mobile service interfaces    | Located at **[mobile_service_interface](./service_interface)**. Contains encapsulation interfaces for analytics, error logging and push          |
+| Mobile service components    | Located at **[mobile_service_component](./service_component)**. Contains internal encapsulation implementations for public service combinations |
 | GMS-only                     | Public encapsulation implementation of plugins with Google Mobile Services only: Firebase Analytics, Crashlytics and Cloud Messaging                    |
 | HMS-only                     | Public encapsulation implementation of plugins with Huawei Mobile Services only: Analytics, Crash and Push                                              |
 | GMS & HMS single prioritized | Public encapsulation implementation of plugins with Google and Huawei Mobile Services. GMS is *prioritized* over HMS                                    |

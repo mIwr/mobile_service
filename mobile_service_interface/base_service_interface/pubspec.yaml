@@ -1,16 +1,11 @@
 name: base_service_interface
 description: Base mobile service interface
-version: 0.1.1
+version: 0.1.2
 publish_to: none
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-
-dependencies:
-  flutter:
-    sdk: flutter
+  sdk: ^3.3.4
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: any
+  lints: any # Last 3.3.0 version - 4.0.0
+  test: ^1.25.7 # Last 3.3.0 version - 1.25.7

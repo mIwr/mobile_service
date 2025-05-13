@@ -2,10 +2,7 @@
 import 'dart:collection';
 
 import 'package:base_service_interface/base_service_interface.dart';
-import 'package:base_service_interface/model/service_config.dart';
 
-export 'package:base_service_interface/model/service_agent.dart';
-export 'package:base_service_interface/model/service_config.dart';
 export 'package:base_service_interface/base_service_interface.dart';
 
 ///Represents a set of services with 'master (one) - slave (many)' link

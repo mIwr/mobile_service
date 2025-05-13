@@ -1,5 +1,4 @@
 
-import 'package:analytics_service/analytics_service.dart';
 import 'package:analytics_service_gms/analytics_service.dart' as google;
 import 'package:analytics_service_hms/analytics_service.dart' as huawei;
 import 'package:analytics_service_interface/analytics_service_interface.dart';
@@ -21,6 +20,16 @@ class AnalyticsServiceImpl implements AnalyticsServiceInterface {
       return ServiceAgent.hms;
     }
     return null;
+  }
+  @override
+  bool get canUse {
+    if (_gmsAvailable) {
+      return google.AnalyticsService.instance.canUse;
+    }
+    if (_hmsAvailable) {
+      return huawei.AnalyticsService.instance.canUse;
+    }
+    return false;
   }
 
   @override
