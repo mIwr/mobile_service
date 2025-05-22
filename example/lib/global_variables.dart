@@ -16,11 +16,6 @@ var appVersionNumber = 0;
 String get appVersion {
   return '$appVersionCode($appVersionNumber)';
 }
-String get appVersionWithInstallInfo {
-  return "$appVersion - $appInstallSource";
-}
-///Read from native app install source
-var appInstallSource = "";
 
 ///Read from native app name
 var currAppName = "";

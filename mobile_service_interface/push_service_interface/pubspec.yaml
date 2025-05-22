@@ -1,10 +1,10 @@
 name: push_service_interface
 description: Remote push service interface
-version: 0.1.1
+version: 0.1.2
 publish_to: none
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ^3.3.4
 
 repository_url: &repository_url https://github.com/mIwr/mobile_service
 repository_ref: &repository_ref master
@@ -14,6 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  universal_platform: ^1.1.0
   shared_preferences: ^2.2.3 # Android background and 'killed' push messages callback handler support
   base_service_interface:
     git:

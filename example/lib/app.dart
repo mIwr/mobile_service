@@ -1,6 +1,7 @@
 
+import 'dart:io';
+
 import 'package:analytics_service/analytics_service.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'global_variables.dart';
 import 'ui/advanced_analytics_observer.dart';
@@ -48,11 +49,16 @@ class _ExampleAppState extends State<ExampleApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    final statusBarObs = StatusBarObserver();
-    final navBarObs = SystemNavBarObserver();
-    AdvancedAnalyticsObserver? analyticsObs;
+    final List<NavigatorObserver> navObservers = [];
+    if (Platform.isAndroid || Platform.isIOS) {
+      navObservers.addAll([
+        StatusBarObserver(),
+        SystemNavBarObserver()
+      ]);
+    }
     try {
-      analyticsObs = AdvancedAnalyticsObserver(analyticsService: AnalyticsService.instance);
+      final analyticsObs = AdvancedAnalyticsObserver(analyticsService: AnalyticsService.instance);
+      navObservers.add(analyticsObs);
     } catch (error) {
       print("Init analytics observer error $error");
     }
@@ -69,15 +75,7 @@ class _ExampleAppState extends State<ExampleApp> with WidgetsBindingObserver {
             GlobalMaterialLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
-          ], navigatorObservers: kDebugMode ? [
-            statusBarObs,
-            navBarObs
-          ] : [
-            statusBarObs,
-            navBarObs,
-            if (analyticsObs != null)
-              analyticsObs,
-          ], supportedLocales: S.delegate.supportedLocales, navigatorKey: mainNavKey,
+          ], navigatorObservers: navObservers, supportedLocales: S.delegate.supportedLocales, navigatorKey: mainNavKey,
             routes: {
               kAnalyticsTabRouteKey: (context) => const TabBarScaffold(),
             },

@@ -1,6 +1,7 @@
 import 'package:analytics_service_interface/analytics_service_interface.dart';
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:flutter/foundation.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class AnalyticsServiceImpl implements AnalyticsServiceInterface {
 
@@ -16,6 +17,8 @@ class AnalyticsServiceImpl implements AnalyticsServiceInterface {
   String get agentKey => ServiceAgentExt.kYandexAppMetricaAgentKey;
   @override
   ServiceAgent? get agent => ServiceAgent.yandexAppMetrica;
+  @override
+  bool get canUse => UniversalPlatform.isAndroid || UniversalPlatform.isIOS;
 
   @override
   Future<void> init() async {
@@ -23,20 +26,31 @@ class AnalyticsServiceImpl implements AnalyticsServiceInterface {
   }
 
   @override
-  Future<void> initWithConfig(ServiceConfig config) {
-    return AppMetrica.activateReporter(ReporterConfig(config.apiKey, logs: kDebugMode));
+  Future<void> initWithConfig(ServiceConfig config) async {
+    if (!canUse) {
+      print("Unsupported platform for AppMetrica analytics - " + UniversalPlatform.operatingSystem);
+      return;
+    }
+    await AppMetrica.activateReporter(AppMetricaReporterConfig(config.apiKey, logs: kDebugMode));
   }
 
   @override
-  Future<void> setAnalyticsCollectionEnabled(bool enabled) {
-    return AppMetrica.setDataSendingEnabled(enabled);
+  Future<void> setAnalyticsCollectionEnabled(bool enabled) async {
+    if (!canUse) {
+      return;
+    }
+    await AppMetrica.setDataSendingEnabled(enabled);
   }
 
   @override
-  Future<void> logEvent({required String name, Map<String, Object?>? parameters}) {
+  Future<void> logEvent({required String name, Map<String, Object?>? parameters}) async {
+    if (!canUse) {
+      return;
+    }
     final Map<String, Object> attributes = {};
     if (parameters == null) {
-      return AppMetrica.reportEvent(name);
+      await AppMetrica.reportEvent(name);
+      return;
     }
     for (final entry in parameters.entries) {
       final entryVal = entry.value;
@@ -46,45 +60,59 @@ class AnalyticsServiceImpl implements AnalyticsServiceInterface {
       }
       attributes[entry.key] = entryVal;
     }
-    return AppMetrica.reportEventWithMap(name, attributes);
+    await AppMetrica.reportEventWithMap(name, attributes);
   }
 
   @override
-  Future<void> logLogin({String? loginMethod}) {
+  Future<void> logLogin({String? loginMethod}) async {
+    if (!canUse) {
+      return;
+    }
     if (loginMethod == null || loginMethod.isEmpty) {
-      return AppMetrica.reportEvent(_loginEventName);
+      await AppMetrica.reportEvent(_loginEventName);
+      return;
     }
     final Map<String, Object> attributes = {
       _loginMethodAttrName: loginMethod
     };
-    return AppMetrica.reportEventWithMap(_loginEventName, attributes);
+    await AppMetrica.reportEventWithMap(_loginEventName, attributes);
   }
 
   @override
-  Future<void> logSignUp({required String signUpMethod}) {
+  Future<void> logSignUp({required String signUpMethod}) async {
+    if (!canUse) {
+      return;
+    }
     if (signUpMethod.isEmpty) {
-      return AppMetrica.reportEvent(_signUpEventName);
+      await AppMetrica.reportEvent(_signUpEventName);
+      return;
     }
     final Map<String, Object> attributes = {
       _signUpMethodAttrName: signUpMethod
     };
-    return AppMetrica.reportEventWithMap(_signUpEventName, attributes);
+    await AppMetrica.reportEventWithMap(_signUpEventName, attributes);
   }
 
   @override
-  Future<void> setCurrentScreen({required String? screenName, String screenClassOverride = 'Flutter'}) {
+  Future<void> setCurrentScreen({required String? screenName, String screenClassOverride = 'Flutter'}) async {
+    if (!canUse) {
+      return;
+    }
     final Map<String, Object> attributes = {
       _screenClassAttrName: screenClassOverride
     };
     if (screenName != null && screenName.isNotEmpty) {
       attributes[_screenNameAttrName] = screenName;
     }
-    return AppMetrica.reportEventWithMap(_screenViewEventName, attributes);
+    await AppMetrica.reportEventWithMap(_screenViewEventName, attributes);
   }
 
   @override
-  Future<void> setUserId({String? id}) {
-    return AppMetrica.setUserProfileID(id);
+  Future<void> setUserId({String? id}) async {
+    if (!canUse) {
+      return;
+    }
+    await AppMetrica.setUserProfileID(id);
   }
 
   @override

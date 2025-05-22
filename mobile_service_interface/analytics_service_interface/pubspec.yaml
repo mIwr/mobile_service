@@ -1,18 +1,16 @@
 name: analytics_service_interface
 description: Remote analytics service interface
-version: 0.1.1
+version: 0.1.2
 publish_to: none
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ^3.3.4
 
 repository_url: &repository_url https://github.com/mIwr/mobile_service
 repository_ref: &repository_ref master
 base_service_path: &base_service_path mobile_service_interface/base_service_interface
 
 dependencies:
-  flutter:
-    sdk: flutter
 
   base_service_interface:
     git:
@@ -21,6 +19,5 @@ dependencies:
       path: *base_service_path
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: any
+  lints: any # Last 3.3.0 version - 4.0.0
+  test: ^1.25.7 # Last 3.3.0 version - 1.25.7

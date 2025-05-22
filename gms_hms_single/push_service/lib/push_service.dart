@@ -1,4 +1,3 @@
-import 'package:push_service_interface/model/ps_remote_message.dart';
 import 'package:push_service_interface/push_service_interface.dart';
 import 'src/push_service_impl.dart';
 

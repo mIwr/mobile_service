@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -52,22 +57,12 @@ class S {
 
   /// `Errlog`
   String get tab_errlog_name {
-    return Intl.message(
-      'Errlog',
-      name: 'tab_errlog_name',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Errlog', name: 'tab_errlog_name', desc: '', args: []);
   }
 
   /// `Push`
   String get tab_push_name {
-    return Intl.message(
-      'Push',
-      name: 'tab_push_name',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Push', name: 'tab_push_name', desc: '', args: []);
   }
 
   /// `Analytics collection`
@@ -162,12 +157,7 @@ class S {
 
   /// `Info`
   String get general_info {
-    return Intl.message(
-      'Info',
-      name: 'general_info',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Info', name: 'general_info', desc: '', args: []);
   }
 
   /// `General info`
@@ -192,52 +182,27 @@ class S {
 
   /// `All`
   String get general_all {
-    return Intl.message(
-      'All',
-      name: 'general_all',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('All', name: 'general_all', desc: '', args: []);
   }
 
   /// `Search`
   String get general_search {
-    return Intl.message(
-      'Search',
-      name: 'general_search',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Search', name: 'general_search', desc: '', args: []);
   }
 
   /// `Date`
   String get general_date {
-    return Intl.message(
-      'Date',
-      name: 'general_date',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Date', name: 'general_date', desc: '', args: []);
   }
 
   /// `Time`
   String get general_time {
-    return Intl.message(
-      'Time',
-      name: 'general_time',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Time', name: 'general_time', desc: '', args: []);
   }
 
   /// `Today`
   String get general_today {
-    return Intl.message(
-      'Today',
-      name: 'general_today',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Today', name: 'general_today', desc: '', args: []);
   }
 
   /// `Tomorrow`
@@ -252,42 +217,22 @@ class S {
 
   /// `Add`
   String get general_add {
-    return Intl.message(
-      'Add',
-      name: 'general_add',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add', name: 'general_add', desc: '', args: []);
   }
 
   /// `Send`
   String get general_send {
-    return Intl.message(
-      'Send',
-      name: 'general_send',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Send', name: 'general_send', desc: '', args: []);
   }
 
   /// `Delete`
   String get general_delete {
-    return Intl.message(
-      'Delete',
-      name: 'general_delete',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Delete', name: 'general_delete', desc: '', args: []);
   }
 
   /// `Cancel`
   String get general_cancel {
-    return Intl.message(
-      'Cancel',
-      name: 'general_cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cancel', name: 'general_cancel', desc: '', args: []);
   }
 
   /// `Cancel`
@@ -302,52 +247,27 @@ class S {
 
   /// `Close`
   String get general_close {
-    return Intl.message(
-      'Close',
-      name: 'general_close',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Close', name: 'general_close', desc: '', args: []);
   }
 
   /// `Next`
   String get general_next {
-    return Intl.message(
-      'Next',
-      name: 'general_next',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Next', name: 'general_next', desc: '', args: []);
   }
 
   /// `Confirm`
   String get general_confirm {
-    return Intl.message(
-      'Confirm',
-      name: 'general_confirm',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Confirm', name: 'general_confirm', desc: '', args: []);
   }
 
   /// `Choose`
   String get general_choose {
-    return Intl.message(
-      'Choose',
-      name: 'general_choose',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Choose', name: 'general_choose', desc: '', args: []);
   }
 
   /// `Email`
   String get general_email {
-    return Intl.message(
-      'Email',
-      name: 'general_email',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Email', name: 'general_email', desc: '', args: []);
   }
 
   /// `Password`
@@ -362,52 +282,27 @@ class S {
 
   /// `Edit`
   String get general_edit {
-    return Intl.message(
-      'Edit',
-      name: 'general_edit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Edit', name: 'general_edit', desc: '', args: []);
   }
 
   /// `Save`
   String get general_save {
-    return Intl.message(
-      'Save',
-      name: 'general_save',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save', name: 'general_save', desc: '', args: []);
   }
 
   /// `Refresh`
   String get general_refresh {
-    return Intl.message(
-      'Refresh',
-      name: 'general_refresh',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Refresh', name: 'general_refresh', desc: '', args: []);
   }
 
   /// `Update`
   String get general_update {
-    return Intl.message(
-      'Update',
-      name: 'general_update',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Update', name: 'general_update', desc: '', args: []);
   }
 
   /// `Skip`
   String get general_skip {
-    return Intl.message(
-      'Skip',
-      name: 'general_skip',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Skip', name: 'general_skip', desc: '', args: []);
   }
 
   /// `Are you sure?`
@@ -432,42 +327,22 @@ class S {
 
   /// `Exit`
   String get general_exit {
-    return Intl.message(
-      'Exit',
-      name: 'general_exit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Exit', name: 'general_exit', desc: '', args: []);
   }
 
   /// `Show`
   String get general_show {
-    return Intl.message(
-      'Show',
-      name: 'general_show',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Show', name: 'general_show', desc: '', args: []);
   }
 
   /// `Create`
   String get general_create {
-    return Intl.message(
-      'Create',
-      name: 'general_create',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Create', name: 'general_create', desc: '', args: []);
   }
 
   /// `Error`
   String get general_error {
-    return Intl.message(
-      'Error',
-      name: 'general_error',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Error', name: 'general_error', desc: '', args: []);
   }
 
   /// `Start`
@@ -482,32 +357,17 @@ class S {
 
   /// `End`
   String get general_time_end {
-    return Intl.message(
-      'End',
-      name: 'general_time_end',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('End', name: 'general_time_end', desc: '', args: []);
   }
 
   /// `Version`
   String get general_version {
-    return Intl.message(
-      'Version',
-      name: 'general_version',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Version', name: 'general_version', desc: '', args: []);
   }
 
   /// `b`
   String get general_bytes_short {
-    return Intl.message(
-      'b',
-      name: 'general_bytes_short',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('b', name: 'general_bytes_short', desc: '', args: []);
   }
 
   /// `Kb`
@@ -542,22 +402,12 @@ class S {
 
   /// `Reset`
   String get general_reset {
-    return Intl.message(
-      'Reset',
-      name: 'general_reset',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Reset', name: 'general_reset', desc: '', args: []);
   }
 
   /// `Done`
   String get general_done {
-    return Intl.message(
-      'Done',
-      name: 'general_done',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Done', name: 'general_done', desc: '', args: []);
   }
 
   /// `First name`
@@ -582,22 +432,12 @@ class S {
 
   /// `Message`
   String get general_message {
-    return Intl.message(
-      'Message',
-      name: 'general_message',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Message', name: 'general_message', desc: '', args: []);
   }
 
   /// `Phone`
   String get general_phone {
-    return Intl.message(
-      'Phone',
-      name: 'general_phone',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Phone', name: 'general_phone', desc: '', args: []);
   }
 
   /// `Phone number`
@@ -612,82 +452,42 @@ class S {
 
   /// `Link`
   String get general_link {
-    return Intl.message(
-      'Link',
-      name: 'general_link',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Link', name: 'general_link', desc: '', args: []);
   }
 
   /// `Event`
   String get general_event {
-    return Intl.message(
-      'Event',
-      name: 'general_event',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Event', name: 'general_event', desc: '', args: []);
   }
 
   /// `Events`
   String get general_events {
-    return Intl.message(
-      'Events',
-      name: 'general_events',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Events', name: 'general_events', desc: '', args: []);
   }
 
   /// `Camera`
   String get general_camera {
-    return Intl.message(
-      'Camera',
-      name: 'general_camera',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Camera', name: 'general_camera', desc: '', args: []);
   }
 
   /// `Cameras`
   String get general_cameras {
-    return Intl.message(
-      'Cameras',
-      name: 'general_cameras',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cameras', name: 'general_cameras', desc: '', args: []);
   }
 
   /// `Group`
   String get general_group {
-    return Intl.message(
-      'Group',
-      name: 'general_group',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Group', name: 'general_group', desc: '', args: []);
   }
 
   /// `Groups`
   String get general_groups {
-    return Intl.message(
-      'Groups',
-      name: 'general_groups',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Groups', name: 'general_groups', desc: '', args: []);
   }
 
   /// `App`
   String get general_application {
-    return Intl.message(
-      'App',
-      name: 'general_application',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('App', name: 'general_application', desc: '', args: []);
   }
 
   /// `Application`
@@ -732,22 +532,12 @@ class S {
 
   /// `Comment`
   String get general_comment {
-    return Intl.message(
-      'Comment',
-      name: 'general_comment',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Comment', name: 'general_comment', desc: '', args: []);
   }
 
   /// `Filter`
   String get general_filter {
-    return Intl.message(
-      'Filter',
-      name: 'general_filter',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Filter', name: 'general_filter', desc: '', args: []);
   }
 
   /// `Analytics`

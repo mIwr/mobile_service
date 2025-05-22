@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
 import 'package:huawei_push/huawei_push.dart';
-import 'package:push_service_interface/model/ps_remote_message.dart';
 import 'package:push_service_interface/push_service_interface.dart';
 
 void _onPushOpenedApp(dynamic message) {
@@ -81,9 +80,15 @@ class PushServiceImpl implements PushServiceInterface  {
   String get agentKey => ServiceAgentExt.kHmsAgentKey;
   @override
   ServiceAgent? get agent => ServiceAgent.hms;
+  @override
+  bool get canUse => UniversalPlatform.isAndroid;
 
   @override
   Future<void> init() async {
+    if (!canUse) {
+      print("Unsupported platform for HMS Push - " + UniversalPlatform.operatingSystem);
+      return;
+    }
     await Push.setAutoInitEnabled(true);
     if (_initialized) {
       return;
@@ -109,7 +114,7 @@ class PushServiceImpl implements PushServiceInterface  {
       }
     }
     //Background push handler
-    Push.registerBackgroundMessageHandler(onAndroidBackgroundMessage);
+    await Push.registerBackgroundMessageHandler(onAndroidBackgroundMessage);
   }
 
   @override
@@ -121,6 +126,9 @@ class PushServiceImpl implements PushServiceInterface  {
 
   @override
   Future<String?> getToken() async {
+    if (!canUse) {
+      return null;
+    }
     Push.getToken("");
     final tk = await Push.getTokenStream.asBroadcastStream().first;
 
@@ -129,9 +137,10 @@ class PushServiceImpl implements PushServiceInterface  {
 
   @override
   Future<void> deleteToken() async {
+    if (!canUse) {
+      return;
+    }
     await Push.deleteToken("");
-
-    return;
   }
 
   @override
@@ -142,21 +151,33 @@ class PushServiceImpl implements PushServiceInterface  {
 
   @override
   Future<void> subscribeToTopic(String topic) async {
+    if (!canUse) {
+      return;
+    }
     await Push.subscribe(topic);
   }
 
   @override
   Future<void> unsubscribeFromTopic(String topic) async {
+    if (!canUse) {
+      return;
+    }
     await Push.unsubscribe(topic);
   }
 
   @override
-  Future<void> cancelAllNotifications() {
-    return Push.cancelAllNotifications();
+  Future<void> cancelAllNotifications() async {
+    if (!canUse) {
+      return;
+    }
+    await Push.cancelAllNotifications();
   }
 
   @override
   Future<PSRemoteMessage?> getInitialMessage() async {
+    if (!canUse) {
+      return null;
+    }
     final hmsMsg = await Push.getInitialNotification();
     if (hmsMsg == null) {
       return null;
