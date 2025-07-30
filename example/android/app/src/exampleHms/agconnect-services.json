@@ -26,22 +26,22 @@
 		"SG_back":"connect-ws-dra.hispace.dbankcloud.com"
 	},
 	"client":{
-		"cp_id":"ID",
-		"product_id":"ID",
-		"client_id":"ID",
-		"client_secret":"SECRET",
-		"project_id":"ID",
-		"app_id":"ID",
-		"api_key":"SECRET",
-		"package_name":"bundle.id"
+		"cp_id":"20007000031610000",
+		"product_id":"388421841222123456",
+		"client_id":"14311649574531234567",
+		"client_secret":"9BE70B7A63434D9356623ADCCB443101442BFA124DF5BDCE765A1548526E1408",
+		"project_id":"388421841222123456",
+		"app_id":"123456789",
+		"api_key":"DQEDAEaOtlWIkLFR3lDaRJcUMHqbTQnU2q2v0qgENBLNGptcOUnIpsgqpIddgTcEikX8zF20a5hRJev/Ix/3PZfYXWVZd5XlpIGjmA==",
+		"package_name":"org.zeit.message.service.example"
 	},
 	"oauth_client":{
-		"client_id":"ID",
+		"client_id":"123456789",
 		"client_type":1
 	},
 	"app_info":{
-		"app_id":"ID",
-		"package_name":"bundle.id"
+		"app_id":"123456789",
+		"package_name":"org.zeit.message.service.example"
 	},
 	"service":{
 		"analytics":{
@@ -79,17 +79,17 @@
 	"configuration_version":"3.0",
 	"appInfos":[
 		{
-			"package_name":"bundle.id",
+			"package_name":"org.zeit.message.service.example",
 			"client":{
-				"app_id":"ID"
+				"app_id":"123456789"
 			},
 			"app_info":{
-				"package_name":"bundle.id",
-				"app_id":"ID"
+				"package_name":"org.zeit.message.service.example",
+				"app_id":"123456789"
 			},
 			"oauth_client":{
 				"client_type":1,
-				"client_id":"ID"
+				"client_id":"123456789"
 			}
 		}
 	]

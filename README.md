@@ -5,10 +5,10 @@ Useful for supporting several different services with single app-level implement
 
 ## General
 
-- Android 7.0+ (SDK 24+), supports SDK 34+
-- iOS 12.0+
-- Dart SDK >=3.3.4
-- Flutter SDK >=3.19.6
+- Android 7.0+ (SDK 23+), supports SDK 34+
+- iOS 11.0+ (Latest versions require iOS 13.0+)
+- Dart SDK >=2.18.0 (some modules have >=3.0.0 restriction)
+- Flutter SDK >=3.0.0 (some modules have >=3.10.0 restriction)
 
 Supported service types:
 
@@ -84,4 +84,26 @@ push_service:
 ```dart
 await AnalyticsService.instance.init();
 await ErrlogService.instance.init();
+```
+
+### HMS push build error temporary workaround
+
+For new Flutter versions (3.29+) Android app build fails with error even at the latest plugin version 6.13.0+300
+
+```
+huawei\hms\flutter\push\backgroundmessaging\BackgroundMessagingService.java:27: error: cannot find symbol import io.flutter.plugin.common.PluginRegistry.PluginRegistrantCallback;
+
+...
+
+huawei\hms\flutter\push\backgroundmessaging\FlutterBackgroundRunner.java:134: error: cannot find symbol pluginRegistrantCallback.registerWith(new ShimPluginRegistry(flutterEngine));
+```
+
+For fix that you may at your app pubspec.yaml add dependency override:
+
+```yaml
+dependency_overrides:
+  huawei_push:
+    git:
+      url: https://github.com/crasowas/hms-flutter-plugin.git
+      path: flutter-hms-push
 ```

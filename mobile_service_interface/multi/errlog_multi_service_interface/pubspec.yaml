@@ -1,10 +1,10 @@
 name: errlog_multi_service_interface
 description: Remote error logging multi-service interface
-version: 0.1.2
+version: 0.1.3
 publish_to: none
 
 environment:
-  sdk: ^3.3.4
+  sdk: ">=2.18.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -16,5 +16,6 @@ dependencies:
     path: ../../errlog_service_interface
 
 dev_dependencies:
-  lints: any # Last 3.3.0 version - 4.0.0
-  test: ^1.25.7 # Last 3.3.0 version - 1.25.7
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any
