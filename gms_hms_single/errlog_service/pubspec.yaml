@@ -4,7 +4,7 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.3.4
+  sdk: ">=2.18.0 <4.0.0"
 
 repository_url: &repository_url https://github.com/mIwr/mobile_service
 repository_ref: &repository_ref master
@@ -16,7 +16,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_hms_gms_availability: ^3.10.0
   errlog_service_interface:
     git:
       url: *repository_url
@@ -32,6 +31,7 @@ dependencies:
       url: *repository_url
       ref: *repository_ref
       path: *errlog_service_hms_path
+  flutter_hms_gms_availability: ^3.0.0
 
 dev_dependencies:
   flutter_test:

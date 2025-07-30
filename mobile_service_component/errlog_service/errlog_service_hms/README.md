@@ -2,5 +2,5 @@
 
 ## General
 
-- Dart SDK >=3.3.4
-- Flutter SDK >=3.19.6
+- Dart SDK >=2.18.0
+- Flutter SDK >=3.3.0

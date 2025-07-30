@@ -1,16 +1,17 @@
 name: errlog_service_interface
 description: Remote error logging service interface
-version: 0.1.2
+version: 0.1.3
 publish_to: none
 
 environment:
-  sdk: ^3.3.4
+  sdk: ">=2.18.0 <4.0.0"
 
 repository_url: &repository_url https://github.com/mIwr/mobile_service
 repository_ref: &repository_ref master
 base_service_path: &base_service_path mobile_service_interface/base_service_interface
 
 dependencies:
+
   flutter:
     sdk: flutter
 
@@ -21,5 +22,6 @@ dependencies:
       path: *base_service_path
 
 dev_dependencies:
-  lints: any # Last 3.3.0 version - 4.0.0
-  test: ^1.25.7 # Last 3.3.0 version - 1.25.7
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any
